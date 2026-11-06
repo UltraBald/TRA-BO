@@ -8,22 +8,29 @@ function selection.
 
 ## Method
 
-For configuration \(\lambda_i\), let \(\ell_{ik}\) be its loss on validation
-window \(V_k\). With \(K-m\) earlier windows and \(m\) recent windows,
+For configuration $\lambda_i$, let $\ell_{ik}$ be its loss on validation
+window $V_k$. With $K-m$ earlier windows and $m$ recent windows,
 
-```text
-e_i = mean(losses on V_1, ..., V_{K-m})
-r_i = mean(losses on V_{K-m+1}, ..., V_K)
-g_i = mean(losses on V_1, ..., V_K)
-q   = [1 + KendallTauB({e_i}, {r_i})] / 2
-```
+$$
+e_i = \frac{1}{K-m}\sum_{k=1}^{K-m}\ell_{ik}, \qquad
+r_i = \frac{1}{m}\sum_{k=K-m+1}^{K}\ell_{ik}, \qquad
+g_i = \frac{1}{K}\sum_{k=1}^{K}\ell_{ik}.
+$$
+
+The Temporal Rank Agreement is
+
+$$
+q = \frac{1 + \tau_b\!\left((e_i)_{i=1}^{n}, (r_i)_{i=1}^{n}\right)}{2},
+$$
+
+where $\tau_b$ is Kendall's rank correlation coefficient.
 
 The GP is fitted to the calibrated target
 
-```text
-omega(q) = eta * (1 - q)
-y_i(q)   = [1 - omega(q)] * g_i + omega(q) * r_i.
-```
+$$
+\omega(q) = \eta(1-q), \qquad
+y_i(q) = [1-\omega(q)]g_i + \omega(q)r_i.
+$$
 
 The default settings are `eta=1/8`, `n_initial=16`, `recent_count=2`, and
 `block_size=5`. The GP is refitted after every trial. TRA is recomputed after
