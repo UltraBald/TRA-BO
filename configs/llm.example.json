@@ -1,0 +1,10 @@
+{
+  "protocol": "openai_chat_completions",
+  "base_url": "https://your-gateway.example/v1",
+  "api_key_env": "TRABO_API_KEY",
+  "model": "your-model-id",
+  "temperature": 0.0,
+  "max_tokens": 64,
+  "timeout_seconds": 120,
+  "max_retries": 2
+}

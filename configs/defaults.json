@@ -1,0 +1,57 @@
+{
+  "name": "TRA-BO default configuration",
+  "objective": "MSE",
+  "lower_is_better": true,
+  "temporal_windows": {
+    "validation_windows": 4,
+    "recent_windows": 2,
+    "future_windows": 1,
+    "split": "expanding training prefix with disjoint horizon-length targets",
+    "future_available_to_optimizer": false,
+    "cutoff_fractions": {
+      "cutoff_01": 0.8,
+      "cutoff_02": 1.0
+    }
+  },
+  "candidate_pool": {
+    "sampler": "scrambled Sobol",
+    "selectable_configurations": 256,
+    "initial_configurations": 16,
+    "query_candidates": 240,
+    "held_out_probes": 24
+  },
+  "tra_bo": {
+    "budget": 50,
+    "block_size": 5,
+    "eta": 0.125,
+    "constant_rank_fallback": 0.5,
+    "acquisitions": ["PI", "EI", "UCB", "TS"]
+  },
+  "gaussian_process": {
+    "kernel": "ARD Matern-5/2",
+    "target_standardization": true,
+    "noise": 1e-6,
+    "optimizer_restarts": 2,
+    "pi_ei_xi": 0.01,
+    "ucb_beta": 2.0,
+    "thompson_sampling": "one joint posterior draw over remaining candidates"
+  },
+  "llm": {
+    "default_model": "DeepSeek-V4-Pro-20260814",
+    "temperature": 0.0,
+    "prompt": "src/tra_bo/prompts/acquisition_controller.txt",
+    "response_schema": "schemas/acquisition_response.schema.json"
+  },
+  "optimizer_seeds": [17, 127, 359, 733, 2027],
+  "development_tasks": {
+    "datasets": ["Solar-Energy", "Traffic"],
+    "forecasters": ["dlinear", "patchtst"],
+    "horizons": [96, 336],
+    "count": 8,
+    "disjoint_from_evaluation": true
+  },
+  "benchmark_tasks": "configs/benchmark_tasks.json",
+  "datasets": "configs/datasets.json",
+  "training": "configs/training.json",
+  "search_spaces": "configs/search_spaces.json"
+}

@@ -1,0 +1,27 @@
+{
+  "sampler": "scrambled Sobol in the unit hypercube",
+  "dlinear": {
+    "dimension": 6,
+    "parameters": [
+      {"name": "seq_len", "type": "categorical", "values": [96, 192, 336, 512, 720]},
+      {"name": "moving_avg", "type": "categorical", "values": [7, 13, 25, 49]},
+      {"name": "individual", "type": "categorical", "values": [false, true]},
+      {"name": "learning_rate", "type": "log_uniform", "low": 1e-5, "high": 1e-2},
+      {"name": "weight_decay", "type": "log_uniform", "low": 1e-7, "high": 1e-2},
+      {"name": "batch_size", "type": "categorical", "values": [16, 32, 64, 128]}
+    ]
+  },
+  "patchtst": {
+    "dimension": 8,
+    "parameters": [
+      {"name": "seq_len", "type": "categorical", "values": [96, 192, 336, 512, 720]},
+      {"name": "patch_len", "type": "categorical", "values": [8, 16, 24, 32, 48]},
+      {"name": "stride", "type": "conditional_categorical", "values": [4, 8, 12, 16, 24, 32], "constraint": "stride <= patch_len"},
+      {"name": "d_model", "type": "categorical", "values": [64, 128, 256, 512]},
+      {"name": "n_heads", "type": "conditional_categorical", "values": [2, 4, 8, 16], "constraint": "d_model % n_heads == 0"},
+      {"name": "e_layers", "type": "categorical", "values": [1, 2, 3, 4]},
+      {"name": "dropout", "type": "uniform", "low": 0.0, "high": 0.5},
+      {"name": "learning_rate", "type": "log_uniform", "low": 1e-5, "high": 3e-3}
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TRA-BO optimization result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "best_index", "best_candidate", "best_target", "final_tra",
+    "observed_indices", "incumbent_indices", "tra_history", "final_targets",
+    "trials", "llm_calls"
+  ],
+  "properties": {
+    "best_index": {"type": "integer", "minimum": 0},
+    "best_candidate": {"type": "array", "items": {"type": "number"}},
+    "best_target": {"type": "number"},
+    "final_tra": {"type": "number", "minimum": 0, "maximum": 1},
+    "observed_indices": {"type": "array", "items": {"type": "integer", "minimum": 0}},
+    "incumbent_indices": {"type": "array", "items": {"type": "integer", "minimum": 0}},
+    "tra_history": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "prefixItems": [{"type": "integer"}, {"type": "number", "minimum": 0, "maximum": 1}],
+        "items": false
+      }
+    },
+    "final_targets": {"type": "array", "items": {"type": "number"}},
+    "trials": {"type": "array", "items": {"type": "object"}},
+    "llm_calls": {"type": "array", "items": {"type": "object"}}
+  }
+}

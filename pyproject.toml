@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tra-bo"
+version = "0.1.0"
+description = "Temporal Rank Agreement for time-series hyperparameter optimization"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [
+  {name = "Hui Xiang"},
+  {name = "Yifei Lu"},
+  {name = "Rong Liang"},
+]
+dependencies = [
+  "numpy>=1.24",
+  "scipy>=1.10",
+  "scikit-learn>=1.3",
+]
+
+[project.scripts]
+tra-bo = "tra_bo.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"tra_bo.prompts" = ["*.txt"]

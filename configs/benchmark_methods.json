@@ -1,0 +1,21 @@
+{
+  "shared_protocol": {
+    "same_initialization": true,
+    "same_candidate_pool": true,
+    "same_budget": true,
+    "same_optimizer_seeds": true,
+    "same_llm_backend_for_llm_methods": true
+  },
+  "methods": [
+    {"name": "Random Search", "family": "random"},
+    {"name": "TPE", "family": "density-based HPO"},
+    {"name": "GP-EI", "family": "single-acquisition GP-BO", "acquisition": "EI"},
+    {"name": "GP-Hedge", "family": "acquisition portfolio", "portfolio": ["PI", "EI", "UCB", "TS"]},
+    {"name": "EGP-EI", "family": "ensemble-surrogate BO", "acquisition": "EI"},
+    {"name": "HyperTime-FP", "family": "temporal HPO", "objective": "ordered mean/worst-window losses"},
+    {"name": "LLAMBO", "family": "LLM-guided HPO"},
+    {"name": "LMABO", "family": "LLM acquisition selection", "portfolio": ["PI", "EI", "UCB", "TS"]},
+    {"name": "LLM-AutoOpt", "family": "time-series LLM-guided HPO"},
+    {"name": "TRA-BO", "family": "temporal-reliability-conditioned BO", "portfolio": ["PI", "EI", "UCB", "TS"]}
+  ]
+}

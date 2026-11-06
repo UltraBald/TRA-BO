@@ -1,0 +1,52 @@
+{
+  "data_protocol": {
+    "normalization": "fit on each training prefix only",
+    "validation_metric": "MSE",
+    "future_metric": ["MSE", "MAE"],
+    "validation_windows": 4,
+    "future_windows": 1,
+    "train_stride": 1,
+    "maximum_training_windows": 1024
+  },
+  "shared_training": {
+    "epochs": 10,
+    "optimizer": "Adam",
+    "loss": "MSE",
+    "gradient_clip_norm": 1.0,
+    "precision": "float32",
+    "deterministic_algorithms": true,
+    "data_loader_workers": 0
+  },
+  "dlinear": {
+    "prediction_length": "task horizon",
+    "input_channels": "dataset channels",
+    "sequence_length": "search-space value",
+    "moving_average": "search-space value",
+    "individual_heads": "search-space value",
+    "batch_size": "search-space value",
+    "learning_rate": "search-space value",
+    "weight_decay": "search-space value"
+  },
+  "patchtst": {
+    "prediction_length": "task horizon",
+    "input_channels": "dataset channels",
+    "sequence_length": "search-space value",
+    "patch_length": "search-space value",
+    "stride": "search-space value",
+    "d_model": "search-space value",
+    "n_heads": "search-space value",
+    "encoder_layers": "search-space value",
+    "d_ff": "2 * d_model",
+    "dropout": "search-space value",
+    "fc_dropout": "search-space value",
+    "head_dropout": "search-space value",
+    "effective_batch_size": 32,
+    "channel_batch_cap": 2048,
+    "padding_patch": "end",
+    "revin": true,
+    "affine": true,
+    "subtract_last": false,
+    "decomposition": false,
+    "kernel_size": 25
+  }
+}

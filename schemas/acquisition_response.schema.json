@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TRA-BO acquisition response",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["acquisition"],
+  "properties": {
+    "acquisition": {
+      "type": "string",
+      "enum": ["PI", "EI", "UCB", "TS"]
+    }
+  }
+}

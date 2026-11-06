@@ -1,0 +1,13 @@
+{
+  "ETTh1": {"path": "ETT-small/ETTh1.csv", "frequency": "1h", "period": 24, "format": "csv"},
+  "ETTh2": {"path": "ETT-small/ETTh2.csv", "frequency": "1h", "period": 24, "format": "csv"},
+  "ETTm1": {"path": "ETT-small/ETTm1.csv", "frequency": "15min", "period": 96, "format": "csv"},
+  "ETTm2": {"path": "ETT-small/ETTm2.csv", "frequency": "15min", "period": 96, "format": "csv"},
+  "Weather": {"path": "weather/weather.csv", "frequency": "10min", "period": 144, "format": "csv"},
+  "Electricity": {"path": "electricity/electricity.csv", "frequency": "1h", "period": 24, "format": "csv"},
+  "Exchange": {"path": "exchange_rate/exchange_rate.csv", "frequency": "1d", "period": 7, "format": "csv"},
+  "PEMS03": {"path": "PEMS/PEMS03.npz", "frequency": "5min", "period": 288, "format": "npz"},
+  "PEMS04": {"path": "PEMS/PEMS04.npz", "frequency": "5min", "period": 288, "format": "npz"},
+  "PEMS07": {"path": "PEMS/PEMS07.npz", "frequency": "5min", "period": 288, "format": "npz"},
+  "PEMS08": {"path": "PEMS/PEMS08.npz", "frequency": "5min", "period": 288, "format": "npz"}
+}
